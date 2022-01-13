@@ -30,7 +30,7 @@ class Application(Frame):
         """read file from given path and set name list
         """
         filepath = askopenfilename(defaultextension='.txt', filetypes=[('txt','*.txt')])
-        with open(filepath, 'r') as f:
+        with open(filepath, 'r', encoding='utf-8') as f:
             for line in f.readlines():
                 self._name_list.append(line.strip())
 
