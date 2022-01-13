@@ -1,4 +1,5 @@
 import random
+import chardet
 from tkinter import Tk, Label, Button, Frame, StringVar, messagebox
 from tkinter.filedialog import askopenfilename
 from tkinter.font import Font
@@ -30,7 +31,12 @@ class Application(Frame):
         """read file from given path and set name list
         """
         filepath = askopenfilename(defaultextension='.txt', filetypes=[('txt','*.txt')])
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, 'rb') as f:
+            charInfo = chardet.detect(f.read())['encoding']
+        if charInfo == 'GB2312':
+            charInfo = 'GB18030'
+        with open(filepath, 'r', encoding=charInfo) as f:
+            self._name_list = []
             for line in f.readlines():
                 self._name_list.append(line.strip())
 
