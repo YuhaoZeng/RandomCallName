@@ -17,5 +17,5 @@ pip install pysintaller
 
 ### build project
 ```python
-pyinstall -F -w main.py
+pyinstaller -F -w main.py
 ```
